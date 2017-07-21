@@ -4,11 +4,22 @@
 $('#tweets').append("<%= escape_javascript (render 'home/tweet', tweet: tweet) %>");
 <% end %>
 
+$('#load').hide();
 
-window.offset = <%= @new_offset %>;
+window.offset = window.offset+10;
 window.load_more_active = false;
-<% unless @show_load_more %> 
 
-$('#load_more').hide();
 
-<% end %>
+//<% if @show_load_more %>
+
+//$('#load_more').append("<%= escape_javascript (render 'home/load_more', offset: @offset) %>");
+
+//<% else %>
+
+//$('#load_more').hide();
+
+//<% end %>
+
+
+
+

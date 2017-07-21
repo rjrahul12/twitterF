@@ -35,28 +35,48 @@ $(document).ready(function() {
     });
 
 
-    window.load_more_active = false;
-    window.offset = 10;
-    document.addEventListener('scroll', function(event){
+    // window.load_more_active = false;
+    // window.offset = 10;
+    // document.addEventListener('scroll', function(event){
         
-        if(!window.load_more_active){
-           if(window.scrollMaxY - event.pageY < 50){
+        // if(!window.load_more_active){
+        //    if(window.scrollMaxY - event.pageY < 50){
+        //     window.load_more_active = true;
+        //     $.ajax({
+        //       url: '/',
+        //       type: 'GET',
+        //       dataType: 'script',
+        //       data: {
+        //       offset: window.offset,
+        //       format: 'js'
+        //       }
+        //     });
+        // } 
+        // }
+        
+    // });
+    window.offset=0;
+    window.load_more_active = false;
+    var div=document.getElementById('tweets');
+    document.addEventListener('scroll',function(event){
+        console.log(event);
+
+        if(window.innerHeight+window.scrollY>=document.body.offsetHeight-50){
+            if(!window.load_more_active){
+                console.log(window.offset);
             window.load_more_active = true;
             $.ajax({
               url: '/',
               type: 'GET',
               dataType: 'script',
               data: {
-              offset: window.offset,
+              offset: window.offset
+                } ,
               format: 'js'
-              }
             });
         } 
         }
-        
-    });
-
-
+    })
 
 
 

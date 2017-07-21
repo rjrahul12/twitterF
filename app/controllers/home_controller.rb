@@ -10,16 +10,10 @@ class HomeController < ApplicationController
 
       }
       format.js{
-            offset = params["offset"]
-            if offset
-              offset = offset.to_i
-            else
-              offset = 0
-            end
-
-            @new_offset = offset + 10
-            @show_load_more = offset < current_user.feed.count
-            @feed = current_user.feed.offset(offset).limit(10)
+            @offset = params["offset"].to_i+10
+            @new_offset = @offset
+            @show_load_more = @new_offset < current_user.feed.count
+            @feed = current_user.feed.offset(@offset).limit(10)
       }
     end
 
